@@ -1,0 +1,21 @@
+.image {
+  width: 288px;
+  height: 384px;
+}
+.text-text {
+  max-width: 16rem;
+  min-height: 50px;
+  max-height: 16rem;
+}
+.bb {
+  align-items: center;
+  display: inline-block;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 3%;
+  min-height: 24rem;
+}
+.cont-tarki7 {
+  display: inline-block;
+  text-align: center;
+}
