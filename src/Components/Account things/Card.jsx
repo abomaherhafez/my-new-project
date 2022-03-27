@@ -18,7 +18,7 @@ export default function Card(props) {
             </div>
           ))
         : ""}
-      {props.vv[1] != undefined
+      {/*props.vv[2] != { im: "", des: "", title: "" }
         ? props.vv.map((e) => (
             <div className="bb">
               <section>
@@ -28,8 +28,8 @@ export default function Card(props) {
               </section>
             </div>
           ))
-        : ""}
-      {props.vv[2] != undefined ? (
+        : ""*/}
+      {/*props.vv[2] != undefined ? (
         <div className="bb">
           <section>
             <img className="image" src={props.vv[2].im} />
@@ -39,7 +39,7 @@ export default function Card(props) {
         </div>
       ) : (
         ""
-      )}
+      )*/}
     </div>
   );
 }

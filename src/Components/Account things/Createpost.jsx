@@ -3,6 +3,7 @@ import "../Pages/Signin.css";
 import { base, tathbetllacountvaldite, elibdibadelfih } from "../../App";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import "./Cards.css";
 
 /*{
     im: "https://th.bing.com/th/id/OIP.2bJ9_f9aKoGCME7ZIff-ZwHaJ4?pid=ImgDet&rs=1",
@@ -11,14 +12,20 @@ import { useHistory } from "react-router-dom";
   }*/
 export default function Createpost() {
   const [post, setpost] = useState({ im: "", title: "", des: "" });
-  const { lista, setlsita } = useContext(base);
   const { vv, setvv } = useContext(tathbetllacountvaldite);
   const history = useHistory();
+  const [im, setFile] = useState("");
 
-  const handleClick = (event, handleimage) => {
+  const handleChange = (event) => {
+    setFile(URL.createObjectURL(event.target.files[0]));
+    console.log(im);
+    console.log("/file/");
+  };
+  const handleClick = (event) => {
     event.preventDefault();
 
     //setvv({ ...vv, post });
+    setpost({ ...post, im: prevent });
     setvv([...vv, post]);
     console.log(vv);
     //console.log(vv.post);
@@ -27,7 +34,17 @@ export default function Createpost() {
   };
   const [prevent, setprevent] = useState();
   const [image, setimage] = useState();
-  /*const handleimage = () => {
+  const handleimage = () => {
+    if (image) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setprevent(reader.result);
+        reader.readAsDataURL(image);
+      };
+    }
+  };
+
+  /* useEffect(() => {
     if (image) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -36,17 +53,16 @@ export default function Createpost() {
       reader.readAsDataURL(image);
     }
     setpost({ ...post, im: prevent });
-  };*/
-  /* useEffect(() => {
+  }, [image]);*/
+  useEffect(() => {
     if (image) {
       const reader = new FileReader();
       reader.onloadend = () => {
         setprevent(reader.result);
-        reader.readAsDataURL(image);
       };
+      reader.readAsDataURL(image);
     }
-    setpost({ ...post, im: prevent });
-  }, [image]);*/
+  }, [image]);
   //console.log(prevent);
   return (
     <div className="ss">
@@ -80,16 +96,16 @@ export default function Createpost() {
               <input
                 type="file"
                 accept="image/*"
-                onChange={(event) => {
-                  const file = event.target.files[0];
-                  const reader = new FileReader();
-                  reader.onloadend = () => {
-                    reader.readAsDataURL(file);
-                    setprevent(reader.result);
-
-                    setpost({ ...post, im: prevent });
-                  };
-                }}
+                onChange={
+                  /*
+                  handleChange */ (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                      setimage(file);
+                    } else {
+                    }
+                  }
+                }
               />
             </div>
           </div>
@@ -97,7 +113,19 @@ export default function Createpost() {
             <button onClick={handleClick}>Register</button>
           </div>
         </form>
-        <img src={post.im} />
+        <img src={prevent} />
+        <img src={im} />
+        {post != undefined ? (
+          <div className="bb">
+            <section>
+              <img className="image" src={post.im} />
+              <h1>{post.title}</h1>
+              <p className="text-text">{post.des}</p>
+            </section>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ export default function SignIn() {
   const history = useHistory();
   const [user, setUser] = useState({ email: "", password: "" });
   const { lista, setlsita } = useContext(base);
+  const [wrong, setwrong] = useState();
   const handleClick = () => {
     const res = lista.find((e) => {
       if (e.email === user.email && e.password === user.password) {
@@ -33,6 +34,8 @@ export default function SignIn() {
 
     if (res != undefined) {
       history.push("/HomeAcount");
+    } else {
+      setwrong("your password or email is wrong");
     }
 
     //  console.log("this is vv");
@@ -76,6 +79,7 @@ export default function SignIn() {
 
           <button onClick={handleClick}> Sign in</button>
         </div>
+        <p>{wrong}</p>
       </form>
       <div></div>
     </div>
